@@ -21,7 +21,7 @@ let currentResults = [];
 let currentSelected;
 
 const updateVideosJSON = (videosJSON) => {
-  let data = JSON.stringify(videosJSON);
+  let data = JSON.stringify(videosJSON, null, '\t');
   fs.writeFileSync(path.resolve('./videos.json'), data);
 };
 
@@ -32,6 +32,11 @@ const getResults = async (term) => {
     currentResults = results;
 
     const thumbnailsDir = './media/thumbnails';
+
+    if (!fs.existsSync(thumbnailsDir)) {
+      fs.mkdirSync(thumbnailsDir);
+    }
+
     fs.readdir(thumbnailsDir, (err, files) => {
       if (err) throw err;
 
