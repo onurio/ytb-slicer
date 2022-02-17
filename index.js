@@ -95,11 +95,13 @@ const downloadResult = async (index) => {
       info.videoDetails.videoId;
 
     let mp3Path = `./media/${vidId}.mp3`;
-    let mp4Path = `./media/${vidId}.mp4`;
+    let movPath = `./media/${vidId}.mov`;
 
     let duration = videoLength;
 
-    const videoStream = new ffmpeg({ source: format.url });
+    const videoStream = new ffmpeg({ source: format.url }).withVideoCodec(
+      "hap"
+    );
 
     if (duration > 60) {
       duration = 60;
@@ -110,7 +112,7 @@ const downloadResult = async (index) => {
 
     videoStream.on("progress", ffmpegOnProgress(logProgress, duration * 1000));
 
-    videoStream.save(path.resolve(mp4Path));
+    videoStream.save(path.resolve(movPath));
 
     audioStream.on("progress", (progress) => {
       Max.post(progress);
@@ -122,7 +124,7 @@ const downloadResult = async (index) => {
       updateVideosJSON(savedVideos);
 
       Max.outlet(["audio", path.resolve(mp3Path)]);
-      Max.outlet(["video", path.resolve(mp4Path)]);
+      Max.outlet(["video", path.resolve(movPath)]);
       Max.outlet(["savedVideos", savedVideos.videos]);
     });
     audioStream.save(path.resolve(mp3Path));
@@ -142,15 +144,15 @@ Max.addHandler("search", (term) => {
 Max.addHandler("select", (id) => {
   currentSelected = id;
   Max.outlet(["audio", path.resolve(`./media/${id}.mp3`)]);
-  Max.outlet(["video", path.resolve(`./media/${id}.mp4`)]);
+  Max.outlet(["video", path.resolve(`./media/${id}.mov`)]);
 });
 
 Max.addHandler("deleteCurrent", () => {
   if (currentSelected) {
     const mp3 = `./media/${currentSelected}.mp3`;
-    const mp4 = `./media/${currentSelected}.mp4`;
+    const mov = `./media/${currentSelected}.mov`;
 
-    [mp3, mp4].forEach((path) => {
+    [mp3, mov].forEach((path) => {
       fs.unlink(path, (err) => {
         if (err) {
           console.error(err);
