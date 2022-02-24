@@ -87,8 +87,6 @@ const downloadResult = async (index) => {
       quality: "highest",
     });
 
-    let frames;
-
     let vidId =
       info.videoDetails.title.replace(/(\s+|\:)/g, "_").toLowerCase() +
       "_" +
@@ -115,7 +113,6 @@ const downloadResult = async (index) => {
     videoStream.save(path.resolve(movPath));
 
     audioStream.on("progress", (progress) => {
-      Max.post(progress);
       Max.outlet(["audioProgress", "bang"]);
     });
 
