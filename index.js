@@ -59,7 +59,7 @@ const getResults = async (term) => {
           result.thumbnails.default.url,
           "./media/thumbnails/" +
             index +
-            result.title.replace(/(\s+|\:)/gi, "_").toLowerCase() +
+            result.title.replace(/(\s+|\:|\/)/gi, "_").toLowerCase() +
             ".jpg",
           () => {}
         );
