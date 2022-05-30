@@ -63,7 +63,9 @@ const getResults = async (term) => {
             ".jpg",
           () => {}
         );
-      } catch (error) {}
+      } catch (error) {
+        Max.outlet("error", error.toString());
+      }
     });
   });
 };
@@ -152,7 +154,7 @@ Max.addHandler("deleteCurrent", () => {
     [mp3, mov].forEach((path) => {
       fs.unlink(path, (err) => {
         if (err) {
-          console.error(err);
+          Max.outlet("error", error.toString());
           return;
         }
         //file removed
