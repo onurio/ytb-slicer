@@ -1,0 +1,34 @@
+{
+	"kaleido": {
+		"params": [
+			{
+				"name": "scale",
+				"type": "number",
+				"default": 1,
+				"range": [1, 10]
+			},
+			{
+				"name": "div",
+				"type": "number",
+				"default": 1,
+				"range": [1, 10]
+			}
+		]
+	},
+	"wobble": {
+		"params": [
+			{
+				"name": "amp",
+				"type": "number",
+				"default": 10,
+				"range": [1, 50]
+			},
+			{
+				"name": "radius",
+				"type": "number",
+				"default": 1,
+				"range": [0, 200]
+			}
+		]
+	}
+}
