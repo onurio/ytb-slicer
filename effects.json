@@ -30,5 +30,53 @@
 				"range": [0, 200]
 			}
 		]
+	},
+	"fisheye": {
+		"params": [
+			{
+				"name": "signcurvature",
+				"type": "number",
+				"default": 3,
+				"range": [1, 10]
+			},
+			{
+				"name": "lensradius",
+				"type": "number",
+				"default": 0.5,
+				"range": [0, 2]
+			}
+		]
+	},
+	"sinefold": {
+		"params": [
+			{
+				"name": "amp",
+				"type": "number",
+				"default": 0.1,
+				"range": [0, 1]
+			},
+			{
+				"name": "phase",
+				"type": "number",
+				"default": 0,
+				"range": [0, 6]
+			}
+		]
+	},
+	"lumadisplace": {
+		"params": [
+			{
+				"name": "amp",
+				"type": "number",
+				"default": 0.1,
+				"range": [0, 1]
+			},
+			{
+				"name": "offset",
+				"type": "number",
+				"default": -0.1,
+				"range": [-1, 1]
+			}
+		]
 	}
 }
