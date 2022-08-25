@@ -2,6 +2,7 @@ const search = require("youtube-search");
 const Max = require("max-api");
 const fs = require("fs");
 const util = require("util");
+const exec = util.promisify(require("child_process").exec);
 const path = require("path");
 const ytdl = require("ytdl-core");
 const http = require("https");
@@ -22,6 +23,16 @@ const opts = {
   maxResults: 10,
   key: "AIzaSyClhpdPEqqXRDXcBMVwTszj4eSX3G9TpAo",
 };
+
+async function updateYTDLCORE() {
+  try {
+    await exec("npm install --save ytdl-core@latest");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+updateYTDLCORE();
 
 let currentResults = [];
 let currentSelected;
