@@ -122,10 +122,10 @@
     "axios" "^0.21.1"
     "xml2js" "~0.2.8"
 
-"ytdl-core@^4.11.0":
-  "integrity" "sha512-Q3hCLiUA9AOGQXzPvno14GN+HgF9wsO1ZBHlj0COTcyxjIyFpWvMfii0UC4/cAbVaIjEdbWB71GdcGuc4J1Lmw=="
-  "resolved" "https://registry.npmjs.org/ytdl-core/-/ytdl-core-4.11.0.tgz"
-  "version" "4.11.0"
+"ytdl-core@^4.11.2":
+  "integrity" "sha512-D939t9b4ZzP3v0zDvehR2q+KgG97UTgrTKju3pOPGQcXtl4W6W5z0EpznzcJFu+OOpl7S7Ge8hv8zU65QnxYug=="
+  "resolved" "https://registry.npmjs.org/ytdl-core/-/ytdl-core-4.11.2.tgz"
+  "version" "4.11.2"
   dependencies:
     "m3u8stream" "^0.8.6"
     "miniget" "^4.2.2"
