@@ -6,9 +6,9 @@ const exec = util.promisify(require("child_process").exec);
 const path = require("path");
 const ytdl = require("ytdl-core");
 const http = require("https");
-const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 const ffmpeg = require("fluent-ffmpeg");
-ffmpeg.setFfmpegPath(ffmpegPath);
+const FFMPEG_PATH = `/opt/homebrew/Cellar/ffmpeg/5.1.2/bin/ffmpeg`;
+ffmpeg.setFfmpegPath(FFMPEG_PATH);
 const ffmpegOnProgress = require("ffmpeg-on-progress");
 
 const logProgress = (progress, event) => {
@@ -98,7 +98,9 @@ const downloadResult = async (index) => {
     const videoLength = Number(info.videoDetails.lengthSeconds);
     const format = ytdl.chooseFormat(info.formats, {
       quality: "highest",
+      filter: "audioandvideo",
     });
+    
 
     let vidId =
       info.videoDetails.title.replace(/(\s+|\:)/g, "_").toLowerCase() +
@@ -119,7 +121,8 @@ const downloadResult = async (index) => {
       videoStream.duration(duration);
     }
 
-    const audioStream = videoStream.clone();
+    const audioStream = videoStream.clone()
+
 
     videoStream.on("progress", ffmpegOnProgress(logProgress, duration * 1000));
 
@@ -129,6 +132,8 @@ const downloadResult = async (index) => {
       Max.outlet(["audioProgress", "bang"]);
     });
 
+    audioStream.save(path.resolve(mp3Path));
+
     audioStream.on("end", () => {
       savedVideos.videos.push(vidId);
       updateVideosJSON(savedVideos);
@@ -137,7 +142,6 @@ const downloadResult = async (index) => {
       Max.outlet(["video", path.resolve(movPath)]);
       Max.outlet(["savedVideos", savedVideos.videos]);
     });
-    audioStream.save(path.resolve(mp3Path));
   } catch (error) {
     Max.outlet("error", error.toString());
   }
