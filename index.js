@@ -96,7 +96,9 @@ const convertVideo = (videoPath) => {
 	try {
 		Max.post(videoPath);
 		const vidId = videoPath.split("/").reverse()[0].split(".")[0];
-		const videoStream = new ffmpeg(videoPath).withVideoCodec("hap");
+		const videoStream = new ffmpeg(videoPath)
+			.withVideoCodec("hap")
+			.outputOptions("-format hap_q");
 		const audioStream = videoStream.clone();
 
 		let mp3Path = `./media/${vidId}.mp3`;
@@ -130,8 +132,8 @@ const downloadResult = async (index) => {
 		let info = await ytdl.getInfo(currentResults[index].link);
 		const videoLength = Number(info.videoDetails.lengthSeconds);
 		const format = ytdl.chooseFormat(info.formats, {
-			quality: "highest",
-			filter: "audioandvideo",
+			filter: "videoandaudio",
+			quality: "highestvideo",
 		});
 
 		let vidId =
@@ -144,9 +146,9 @@ const downloadResult = async (index) => {
 
 		let duration = videoLength;
 
-		const videoStream = new ffmpeg({ source: format.url }).withVideoCodec(
-			"hap"
-		);
+		const videoStream = new ffmpeg({ source: format.url })
+			.withVideoCodec("hap")
+			.outputOptions("-format hap_q");
 
 		if (duration > 60) {
 			duration = 60;
