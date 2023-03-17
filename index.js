@@ -98,7 +98,6 @@ const convertVideo = (videoPath) => {
 		const vidId = videoPath.split("/").reverse()[0].split(".")[0];
 		const videoStream = new ffmpeg(videoPath)
 			.withVideoCodec("hap")
-			.withAudioCodec("copy")
 			.outputOptions("-format hap_q");
 		const audioStream = videoStream.clone();
 
@@ -149,7 +148,6 @@ const downloadResult = async (index) => {
 
 		const videoStream = new ffmpeg({ source: format.url })
 			.withVideoCodec("hap")
-			.withAudioCodec("copy")
 			.outputOptions("-format hap_q");
 
 		if (duration > 60) {
