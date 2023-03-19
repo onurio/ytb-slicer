@@ -21,14 +21,14 @@ Max.outlet(["savedVideos", savedVideos.videos.sort()]);
 
 const opts = {
 	maxResults: 10,
-	key: "AIzaSyClhpdPEqqXRDXcBMVwTszj4eSX3G9TpAo",
+	key: "AIzaSyBt3p-NYYbLAoqPz3N4v3ZS3OkdwiQKp6Q",
 };
 
 async function updateYTDLCORE() {
 	try {
 		await exec("npm install --save ytdl-core@latest");
 	} catch (err) {
-		console.error(err);
+		Max.post(err);
 	}
 }
 
@@ -44,7 +44,10 @@ const updateVideosJSON = (videosJSON) => {
 
 const getResults = async (term) => {
 	search(term, opts, async function (err, results) {
-		if (err) return console.log(err);
+		if (err) {
+			Max.post(err);
+			return;
+		}
 
 		currentResults = results;
 
