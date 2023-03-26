@@ -15,6 +15,7 @@ brew install ffmpeg
 ```
 
 copy `videos.template.json` to `videos.json` and fill in the videos you want to slice
+copy `.env.template` to `.env` and add a valid ytb api key
 
 should look like this
 
