@@ -21,7 +21,7 @@ Max.outlet(["savedVideos", savedVideos.videos.sort()]);
 
 const opts = {
 	maxResults: 10,
-	key: "AIzaSyBt3p-NYYbLAoqPz3N4v3ZS3OkdwiQKp6Q",
+	key: process.env.YTB_API_KEY,
 };
 
 async function updateYTDLCORE() {
