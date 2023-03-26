@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 3,
+			"minor" : 2,
 			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 62.0, 812.0, 704.0 ],
+		"rect" : [ 464.0, 89.0, 414.0, 704.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -42,7 +42,7 @@
 				"box" : 				{
 					"comment" : "mute outlet (message)",
 					"id" : "obj-16",
-					"index" : 0,
+					"index" : 3,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -54,7 +54,7 @@
 				"box" : 				{
 					"comment" : "envelope active (sig)",
 					"id" : "obj-11",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -66,7 +66,7 @@
 				"box" : 				{
 					"comment" : "envelope (sig)",
 					"id" : "obj-9",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -78,7 +78,7 @@
 				"box" : 				{
 					"comment" : "trigger (0/1)",
 					"id" : "obj-8",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -432,6 +432,7 @@
 					"activebgcolor" : [ 0.098039215686275, 0.098039215686275, 0.098039215686275, 1.0 ],
 					"attack_domain" : [ 0.0, 2000.0 ],
 					"decay_domain" : [ 1.5, 10000.0 ],
+					"decay_time" : 5971.333908183365565,
 					"domain_exponent" : 5.0,
 					"id" : "obj-19",
 					"maxclass" : "live.adsrui",
@@ -441,7 +442,14 @@
 					"patching_rect" : [ 119.666657328605879, 185.666659832000732, 449.999999999999773, 254.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.1666659116745, 25.999997496604919, 198.444435861375609, 100.0 ],
-					"sustain" : 0.0,
+					"release_time" : 49.999993561750884,
+					"saved_attribute_attributes" : 					{
+						"activebgcolor" : 						{
+							"expression" : ""
+						}
+
+					}
+,
 					"sustain_exponent" : 2.0
 				}
 
@@ -686,7 +694,7 @@
 					"presentation_rect" : [ 86.944435106383423, 8.999997496604919, 44.0, 15.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
-							"parameter_initial" : [ 0 ],
+							"parameter_initial" : [ 100.0 ],
 							"parameter_initial_enable" : 1,
 							"parameter_longname" : "F.Sustain[4]",
 							"parameter_mmax" : 100.0,
@@ -1160,32 +1168,7 @@
 				}
 
 			}
- ],
-		"parameters" : 		{
-			"obj-10" : [ "F.Decay[1]", "F.Decay", 0 ],
-			"obj-12" : [ "F.Attack[1]", "F.Attack", 0 ],
-			"obj-13" : [ "F.Initial[4]", "F.Initial", 0 ],
-			"obj-24" : [ "F.Release[1]", "F.Release", 0 ],
-			"obj-26" : [ "F.R.Slope[1]", "F.R.Slope", 0 ],
-			"obj-28" : [ "F.D.Slope[1]", "F.D.Slope", 0 ],
-			"obj-30" : [ "F.A.Slope[1]", "F.A.Slope", 0 ],
-			"obj-35" : [ "F.Peak[4]", "F.Peak", 0 ],
-			"obj-38" : [ "F.Sustain[4]", "F.Sustain", 0 ],
-			"obj-41" : [ "F.End[1]", "F.End", 0 ],
-			"parameterbanks" : 			{
-				"0" : 				{
-					"index" : 0,
-					"name" : "",
-					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
-				}
-
-			}
-,
-			"inherited_shortname" : 1
-		}
-,
-		"dependency_cache" : [  ],
-		"autosave" : 0
+ ]
 	}
 
 }
