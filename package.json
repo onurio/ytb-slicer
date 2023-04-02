@@ -1,18 +1,37 @@
 {
-	"name": "youtube-downloader",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"ffmpeg-extract-audio": "^1.0.2",
-		"ffmpeg-on-progress": "^1.0.0",
-		"fluent-ffmpeg": "^2.1.2",
-		"youtube-search": "^1.1.6",
-		"ytdl-core": "^4.11.2"
-	}
+  "name": "youtube-downloader",
+  "version": "1.0.0",
+  "description": "",
+  "source": "./index.js",
+  "main": "./main.js",
+  "targets": {
+    "main": {
+      "includeNodeModules": true
+    }
+  },
+  "alias": {
+    "max-api": {
+      "global": "Max"
+    }
+  },
+  "scripts": {
+    "watch": "parcel watch",
+    "build": "parcel build && npm run prependmaxrequire",
+    "prependmaxrequire": "printf '%s\n%s\n' \"var Max = require('max-api')\" \"$(cat main.js)\" >main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "latest"
+  },
+  "dependencies": {
+    "@types/node": "^18.15.11",
+    "dotenv": "^16.0.3",
+    "ffmpeg-extract-audio": "^1.0.2",
+    "ffmpeg-on-progress": "^1.0.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "parcel-plugin-externals": "^0.5.2",
+    "youtube-search": "^1.1.6",
+    "ytdl-core": "^4.11.3"
+  }
 }
