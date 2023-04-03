@@ -31,7 +31,6 @@
     "ffmpeg-on-progress": "^1.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "parcel-plugin-externals": "^0.5.2",
-    "youtube-search": "^1.1.6",
     "ytdl-core": "^4.11.3"
   }
 }

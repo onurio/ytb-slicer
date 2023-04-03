@@ -1,4 +1,3 @@
-const search = require("youtube-search");
 const fs = require("fs");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
@@ -8,6 +7,7 @@ const http = require("https");
 const ffmpeg = require("fluent-ffmpeg");
 const FFMPEG_PATH = `/opt/homebrew/Cellar/ffmpeg/5.1.2/bin/ffmpeg`;
 ffmpeg.setFfmpegPath(FFMPEG_PATH);
+require("dotenv").config();
 const ffmpegOnProgress = require("ffmpeg-on-progress");
 const Max = require("max-api");
 
@@ -16,6 +16,12 @@ const logProgress = (progress, event) => {
   Max.outlet(["videoProgress", progress * 100]);
 };
 
+// exec("where ffmpeg", {
+//   shell: "/bin/zsh",
+// }).then((result) => {
+//   Max.post(result.stdout);
+// });
+
 let savedVideos = { videos: [] };
 // require("./data/videos2.json")
 // 	.then((data) => (savedVideos = data))
@@ -23,6 +29,9 @@ let savedVideos = { videos: [] };
 // 		fs.writeFileSync("./data/videos2.json", JSON.stringify({ videos: [] }));
 // 		savedVideos = { videos: [] };
 // 	});
+Max.post(process.env.YTB_API_KEY);
+
+Max.outlet("ytbApiKeySet", !!process.env.YTB_API_KEY);
 
 Max.outlet(["savedVideos", savedVideos.videos.sort()]);
 
@@ -36,7 +45,7 @@ async function updateYTDLCORE() {
 
 const searchYTBapi = async (term) =>
   new Promise((resolve, reject) => {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${term}&key=${process.env.YOUTUBE_API_KEY}}`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${term}&key=${process.env.YTB_API_KEY}}`;
     http
       .get(url, (res) => {
         let data = [];
@@ -70,10 +79,10 @@ const updateVideosJSON = (videosJSON) => {
 };
 
 const getResults = async (term) => {
-  console.log(typeof term, term);
   if (/^https:\/\/www\.youtube\.com\/watch\?v=/.test(term)) {
     downloadResult(term);
   } else {
+    if (!process.env.YTB_API_KEY) return;
     const results = await searchYTBapi(term);
     currentResults = results;
     const thumbnailsDir = "./media/thumbnails";
