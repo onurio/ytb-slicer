@@ -12,12 +12,16 @@
   "alias": {
     "max-api": {
       "global": "Max"
+    },
+    "./data/videos2.json": {
+      "global": "videos"
     }
   },
   "scripts": {
     "watch": "parcel watch",
-    "build": "parcel build && npm run prependmaxrequire",
-    "prependmaxrequire": "printf '%s\n%s\n' \"var Max = require('max-api')\" \"$(cat main.js)\" >main.js"
+    "build": "parcel build && npm run prependmaxrequire && npm run prependvideos",
+    "prependmaxrequire": "printf '%s\n%s\n' \"var Max = require('max-api')\" \"$(cat main.js)\" >main.js",
+    "prependvideos": "printf '%s\n%s\n' \"var videos = require('./videos.json')\" \"$(cat main.js)\" >main.js"
   },
   "author": "",
   "license": "ISC",

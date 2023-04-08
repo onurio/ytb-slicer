@@ -1,3 +1,4 @@
+var videos = require('./videos.json')
 var Max = require('max-api')
 var $bFvJb$buffer = require("buffer");
 var $bFvJb$string_decoder = require("string_decoder");
@@ -10572,99 +10573,6 @@ var $gOWQU = parcelRequire("gOWQU");
 });
 
 
-parcelRequire.register("e5tr3", function(module, exports) {
-
-
-
-
-
-var $3xcmX = parcelRequire("3xcmX");
-const $a4185d8ef4233c62$var$version = $3xcmX.version;
-const $a4185d8ef4233c62$var$LINE = /(?:^|^)\s*(?:export\s+)?([\w.-]+)(?:\s*=\s*?|:\s+?)(\s*'(?:\\'|[^'])*'|\s*"(?:\\"|[^"])*"|\s*`(?:\\`|[^`])*`|[^#\r\n]+)?\s*(?:#.*)?(?:$|$)/mg;
-// Parser src into an Object
-function $a4185d8ef4233c62$var$parse(src) {
-    const obj = {};
-    // Convert buffer to string
-    let lines = src.toString();
-    // Convert line breaks to same format
-    lines = lines.replace(/\r\n?/mg, "\n");
-    let match;
-    while((match = $a4185d8ef4233c62$var$LINE.exec(lines)) != null){
-        const key = match[1];
-        // Default undefined or null to empty string
-        let value = match[2] || "";
-        // Remove whitespace
-        value = value.trim();
-        // Check if double quoted
-        const maybeQuote = value[0];
-        // Remove surrounding quotes
-        value = value.replace(/^(['"`])([\s\S]*)\1$/mg, "$2");
-        // Expand newlines if double quoted
-        if (maybeQuote === '"') {
-            value = value.replace(/\\n/g, "\n");
-            value = value.replace(/\\r/g, "\r");
-        }
-        // Add to object
-        obj[key] = value;
-    }
-    return obj;
-}
-function $a4185d8ef4233c62$var$_log(message) {
-    console.log(`[dotenv@${$a4185d8ef4233c62$var$version}][DEBUG] ${message}`);
-}
-function $a4185d8ef4233c62$var$_resolveHome(envPath) {
-    return envPath[0] === "~" ? $bFvJb$path.join($bFvJb$os.homedir(), envPath.slice(1)) : envPath;
-}
-// Populates process.env from .env file
-function $a4185d8ef4233c62$var$config(options) {
-    let dotenvPath = $bFvJb$path.resolve($bFvJb$process.cwd(), ".env");
-    let encoding = "utf8";
-    const debug = Boolean(options && options.debug);
-    const override = Boolean(options && options.override);
-    if (options) {
-        if (options.path != null) dotenvPath = $a4185d8ef4233c62$var$_resolveHome(options.path);
-        if (options.encoding != null) encoding = options.encoding;
-    }
-    try {
-        // Specifying an encoding returns a string instead of a buffer
-        const parsed = $a4185d8ef4233c62$var$DotenvModule.parse($bFvJb$fs.readFileSync(dotenvPath, {
-            encoding: encoding
-        }));
-        Object.keys(parsed).forEach(function(key) {
-            if (!Object.prototype.hasOwnProperty.call($bFvJb$process.env, key)) parsed[key];
-            else {
-                if (override === true) parsed[key];
-                if (debug) {
-                    if (override === true) $a4185d8ef4233c62$var$_log(`"${key}" is already defined in \`process.env\` and WAS overwritten`);
-                    else $a4185d8ef4233c62$var$_log(`"${key}" is already defined in \`process.env\` and was NOT overwritten`);
-                }
-            }
-        });
-        return {
-            parsed: parsed
-        };
-    } catch (e) {
-        if (debug) $a4185d8ef4233c62$var$_log(`Failed to load ${dotenvPath} ${e.message}`);
-        return {
-            error: e
-        };
-    }
-}
-const $a4185d8ef4233c62$var$DotenvModule = {
-    config: $a4185d8ef4233c62$var$config,
-    parse: $a4185d8ef4233c62$var$parse
-};
-module.exports.config = $a4185d8ef4233c62$var$DotenvModule.config;
-module.exports.parse = $a4185d8ef4233c62$var$DotenvModule.parse;
-module.exports = $a4185d8ef4233c62$var$DotenvModule;
-
-});
-parcelRequire.register("3xcmX", function(module, exports) {
-module.exports = JSON.parse('{"name":"dotenv","version":"16.0.3","description":"Loads environment variables from .env file","main":"lib/main.js","types":"lib/main.d.ts","exports":{".":{"require":"./lib/main.js","types":"./lib/main.d.ts","default":"./lib/main.js"},"./config":"./config.js","./config.js":"./config.js","./lib/env-options":"./lib/env-options.js","./lib/env-options.js":"./lib/env-options.js","./lib/cli-options":"./lib/cli-options.js","./lib/cli-options.js":"./lib/cli-options.js","./package.json":"./package.json"},"scripts":{"dts-check":"tsc --project tests/types/tsconfig.json","lint":"standard","lint-readme":"standard-markdown","pretest":"npm run lint && npm run dts-check","test":"tap tests/*.js --100 -Rspec","prerelease":"npm test","release":"standard-version"},"repository":{"type":"git","url":"git://github.com/motdotla/dotenv.git"},"keywords":["dotenv","env",".env","environment","variables","config","settings"],"readmeFilename":"README.md","license":"BSD-2-Clause","devDependencies":{"@types/node":"^17.0.9","decache":"^4.6.1","dtslint":"^3.7.0","sinon":"^12.0.1","standard":"^16.0.4","standard-markdown":"^7.1.0","standard-version":"^9.3.2","tap":"^15.1.6","tar":"^6.1.11","typescript":"^4.5.4"},"engines":{"node":">=12"}}');
-
-});
-
-
 
 var $383e46f26d360885$require$Buffer = $bFvJb$buffer.Buffer;
 
@@ -12931,8 +12839,6 @@ $8ee3058fdc6cf74b$exports = (parcelRequire("3nKoH"));
 
 const $383e46f26d360885$var$FFMPEG_PATH = `/opt/homebrew/Cellar/ffmpeg/5.1.2/bin/ffmpeg`;
 $8ee3058fdc6cf74b$exports.setFfmpegPath($383e46f26d360885$var$FFMPEG_PATH);
-
-(parcelRequire("e5tr3")).config();
 var $197543ea5cb391e9$exports = {};
 "use strict";
 var $86f24597cd73de56$exports = {};
@@ -13085,25 +12991,20 @@ const $383e46f26d360885$var$logProgress = (progress, event)=>{
         progress * 100
     ]);
 };
-// exec("where ffmpeg", {
-//   shell: "/bin/zsh",
-// }).then((result) => {
-//   Max.post(result.stdout);
+var $be04c3b4fb8b7975$exports = {};
+$be04c3b4fb8b7975$exports = videos;
+
+
+// .then((data) => (savedVideos = data))
+// .catch(() => {
+// 	fs.writeFileSync("./data/videos2.json", JSON.stringify({ videos: [] }));
+// 	savedVideos = { videos: [] };
 // });
-let $383e46f26d360885$var$savedVideos = {
-    videos: []
-};
-// require("./data/videos2.json")
-// 	.then((data) => (savedVideos = data))
-// 	.catch(() => {
-// 		fs.writeFileSync("./data/videos2.json", JSON.stringify({ videos: [] }));
-// 		savedVideos = { videos: [] };
-// 	});
 $2e4fb20ed806f477$exports.post("AIzaSyBt3p-NYYbLAoqPz3N4v3ZS3OkdwiQKp6Q");
 $2e4fb20ed806f477$exports.outlet("ytbApiKeySet", true);
 $2e4fb20ed806f477$exports.outlet([
     "savedVideos",
-    $383e46f26d360885$var$savedVideos.videos.sort()
+    $be04c3b4fb8b7975$exports.videos.sort()
 ]);
 async function $383e46f26d360885$var$updateYTDLCORE() {
     try {
@@ -13189,8 +13090,8 @@ const $383e46f26d360885$var$convertVideo = (videoPath)=>{
         });
         audioStream.save($bFvJb$path.resolve(mp3Path));
         audioStream.on("end", ()=>{
-            $383e46f26d360885$var$savedVideos.videos.push(vidId);
-            $383e46f26d360885$var$updateVideosJSON($383e46f26d360885$var$savedVideos);
+            $be04c3b4fb8b7975$exports.videos.push(vidId);
+            $383e46f26d360885$var$updateVideosJSON($be04c3b4fb8b7975$exports);
             $2e4fb20ed806f477$exports.outlet([
                 "audio",
                 $bFvJb$path.resolve(mp3Path)
@@ -13201,7 +13102,7 @@ const $383e46f26d360885$var$convertVideo = (videoPath)=>{
             ]);
             $2e4fb20ed806f477$exports.outlet([
                 "savedVideos",
-                $383e46f26d360885$var$savedVideos.videos
+                $be04c3b4fb8b7975$exports.videos
             ]);
         });
     } catch (error1) {
@@ -13238,8 +13139,8 @@ const $383e46f26d360885$var$downloadResult = async (link)=>{
         });
         audioStream.save($bFvJb$path.resolve(mp3Path));
         videoStream.on("end", ()=>{
-            $383e46f26d360885$var$savedVideos.videos.push(vidId);
-            $383e46f26d360885$var$updateVideosJSON($383e46f26d360885$var$savedVideos);
+            $be04c3b4fb8b7975$exports.videos.push(vidId);
+            $383e46f26d360885$var$updateVideosJSON($be04c3b4fb8b7975$exports);
             $2e4fb20ed806f477$exports.outlet([
                 "audio",
                 $bFvJb$path.resolve(mp3Path)
@@ -13250,7 +13151,7 @@ const $383e46f26d360885$var$downloadResult = async (link)=>{
             ]);
             $2e4fb20ed806f477$exports.outlet([
                 "savedVideos",
-                $383e46f26d360885$var$savedVideos.videos
+                $be04c3b4fb8b7975$exports.videos
             ]);
         });
     } catch (error1) {
@@ -13293,11 +13194,11 @@ $2e4fb20ed806f477$exports.addHandler("deleteCurrent", ()=>{
             //file removed
             });
         });
-        $383e46f26d360885$var$savedVideos.videos = $383e46f26d360885$var$savedVideos.videos.filter((vid)=>vid !== $383e46f26d360885$var$currentSelected);
-        $383e46f26d360885$var$updateVideosJSON($383e46f26d360885$var$savedVideos);
+        $be04c3b4fb8b7975$exports.videos = $be04c3b4fb8b7975$exports.videos.filter((vid)=>vid !== $383e46f26d360885$var$currentSelected);
+        $383e46f26d360885$var$updateVideosJSON($be04c3b4fb8b7975$exports);
         $2e4fb20ed806f477$exports.outlet([
             "savedVideos",
-            $383e46f26d360885$var$savedVideos.videos
+            $be04c3b4fb8b7975$exports.videos
         ]);
     }
 });

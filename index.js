@@ -7,7 +7,7 @@ const http = require("https");
 const ffmpeg = require("fluent-ffmpeg");
 const FFMPEG_PATH = `/opt/homebrew/Cellar/ffmpeg/5.1.2/bin/ffmpeg`;
 ffmpeg.setFfmpegPath(FFMPEG_PATH);
-require("dotenv").config();
+// require("dotenv").config();
 const ffmpegOnProgress = require("ffmpeg-on-progress");
 const Max = require("max-api");
 
@@ -22,13 +22,13 @@ const logProgress = (progress, event) => {
 //   Max.post(result.stdout);
 // });
 
-let savedVideos = { videos: [] };
-// require("./data/videos2.json")
-// 	.then((data) => (savedVideos = data))
-// 	.catch(() => {
-// 		fs.writeFileSync("./data/videos2.json", JSON.stringify({ videos: [] }));
-// 		savedVideos = { videos: [] };
-// 	});
+// let savedVideos = { videos: [] };
+const savedVideos = require("./data/videos2.json");
+// .then((data) => (savedVideos = data))
+// .catch(() => {
+// 	fs.writeFileSync("./data/videos2.json", JSON.stringify({ videos: [] }));
+// 	savedVideos = { videos: [] };
+// });
 Max.post(process.env.YTB_API_KEY);
 
 Max.outlet("ytbApiKeySet", !!process.env.YTB_API_KEY);
