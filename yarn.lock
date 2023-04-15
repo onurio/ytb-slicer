@@ -1459,10 +1459,9 @@
   "resolved" "https://registry.npmjs.org/yaml/-/yaml-1.10.2.tgz"
   "version" "1.10.2"
 
-"ytdl-core@^4.11.3":
-  "integrity" "sha512-0KerQw+R7Nnhcebxq6WPopO92VLNnsoRVjJuhGhRzgfK1YdrnG1aqaq4zycolMBY+K8TZHXPV7ZNIjcawD/BPA=="
-  "resolved" "https://registry.npmjs.org/ytdl-core/-/ytdl-core-4.11.3.tgz"
-  "version" "4.11.3"
+"ytdl-core@github:fent/node-ytdl-core#pull/1203/head":
+  "resolved" "git+ssh://git@github.com/fent/node-ytdl-core.git#586971bd9aeda1cbb4600851cfef82a809833ac2"
+  "version" "0.0.0-development"
   dependencies:
     "m3u8stream" "^0.8.6"
     "miniget" "^4.2.2"

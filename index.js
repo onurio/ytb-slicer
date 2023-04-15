@@ -23,10 +23,10 @@ const logProgress = (progress, event) => {
 // });
 
 // let savedVideos = { videos: [] };
-const savedVideos = require("./data/videos2.json");
+let savedVideos = require("./videos.json");
 // .then((data) => (savedVideos = data))
 // .catch(() => {
-// 	fs.writeFileSync("./data/videos2.json", JSON.stringify({ videos: [] }));
+// 	fs.writeFileSync("./videos.json", JSON.stringify({ videos: [] }));
 // 	savedVideos = { videos: [] };
 // });
 Max.post(process.env.YTB_API_KEY);
@@ -37,7 +37,7 @@ Max.outlet(["savedVideos", savedVideos.videos.sort()]);
 
 async function updateYTDLCORE() {
   try {
-    await exec("npm install --save ytdl-core@latest");
+    // await exec("npm install --save ytdl-core@latest");
   } catch (err) {
     Max.post(err);
   }
@@ -45,7 +45,7 @@ async function updateYTDLCORE() {
 
 const searchYTBapi = async (term) =>
   new Promise((resolve, reject) => {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${term}&key=${process.env.YTB_API_KEY}}`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${term}&key=${process.env.YTB_API_KEY}`;
     http
       .get(url, (res) => {
         let data = [];

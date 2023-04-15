@@ -14,7 +14,7 @@
       "global": "Max"
     },
     "./data/videos2.json": {
-      "global": "videos"
+      "global": "savedVideos"
     }
   },
   "scripts": {
@@ -23,7 +23,7 @@
     "prependmaxrequire": "printf '%s\n%s\n' \"var Max = require('max-api')\" \"$(cat main.js)\" >main.js",
     "prependvideos": "printf '%s\n%s\n' \"var videos = require('./videos.json')\" \"$(cat main.js)\" >main.js"
   },
-  "author": "",
+  "author": "onurio",
   "license": "ISC",
   "devDependencies": {
     "parcel": "latest"
@@ -35,6 +35,6 @@
     "ffmpeg-on-progress": "^1.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "parcel-plugin-externals": "^0.5.2",
-    "ytdl-core": "^4.11.3"
+    "ytdl-core": "github:fent/node-ytdl-core#pull/1203/head"
   }
 }
